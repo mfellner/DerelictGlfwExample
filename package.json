@@ -1,0 +1,13 @@
+{
+  "name": "glfw-example",
+  "description": "A Derelict Example using GLFW",
+  "homepage": "http://github.com",
+  "copyright": "Copyright 2013, Maximilian Fellner",
+  "authors": [
+    "Maximilian Fellner"
+  ],
+  "dependencies": {
+    "derelict-gl3": "~master",
+    "derelict-glfw3": "~master"
+  }
+}
