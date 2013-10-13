@@ -4,6 +4,11 @@ This is a short example using Derelict 3, GLFW 3 and OpenGL 3.
 
 ![Preview](https://raw.github.com/mfellner/DerelictGlfwExample/master/preview.png)
 
+Adopted from:
+
+* http://www.lighthouse3d.com/cg-topics/code-samples/opengl-3-3-glsl-1-5-sample
+* http://open.gl/drawing
+
 ### Building
 
 Requires OpenGL 3+ and GLFW 3+.
