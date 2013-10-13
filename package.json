@@ -1,7 +1,7 @@
 {
   "name": "glfw-example",
   "description": "A Derelict Example using GLFW",
-  "homepage": "http://github.com",
+  "homepage": "https://github.com/mfellner/DerelictGlfwExample",
   "copyright": "Copyright 2013, Maximilian Fellner",
   "authors": [
     "Maximilian Fellner"

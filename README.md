@@ -2,6 +2,8 @@
 
 This is a short example using Derelict 3, GLFW 3 and OpenGL 3.
 
+![Preview](https://raw.github.com/mfellner/DerelictGlfwExample/master/preview.png)
+
 ### Building
 
 Requires OpenGL 3+ and GLFW 3+.
