@@ -1,20 +1,20 @@
 module mfellner.math;
 
 import std.math;
-import derelict.opengl3.gl3;
+import derelict.opengl;
 
 const GLuint MATRIX_SIZE = 16;
 const GLuint VECTOR_SIZE =  3;
 
 // res = a cross b;
-void crossProduct(ref GLfloat a[VECTOR_SIZE], ref GLfloat b[VECTOR_SIZE], ref GLfloat res[VECTOR_SIZE]) {
+void crossProduct(ref GLfloat[VECTOR_SIZE] a, ref GLfloat[VECTOR_SIZE] b, ref GLfloat[VECTOR_SIZE] res) {
   res[0] = a[1] * b[2] - b[1] * a[2];
   res[1] = a[2] * b[0] - b[2] * a[0];
   res[2] = a[0] * b[1] - b[0] * a[1];
 }
  
 // normalize a vec3
-void normalize(ref GLfloat a[VECTOR_SIZE]) {
+void normalize(ref GLfloat[VECTOR_SIZE] a) {
   float mag = sqrt(a[0] * a[0] + a[1] * a[1] + a[2] * a[2]);
   a[0] /= mag;
   a[1] /= mag;
@@ -34,7 +34,7 @@ nothrow void setIdentityMatrix(ref GLfloat[MATRIX_SIZE] mat, GLint size) {
 
 // a = a * b;
 void multMatrix(ref GLfloat[MATRIX_SIZE] a, ref GLfloat[MATRIX_SIZE] b) {
-  GLfloat res[MATRIX_SIZE];
+  GLfloat[MATRIX_SIZE] res;
   
   for (int i = 0; i < 4; i++) {
     for (int j = 0; j < 4; j++) {

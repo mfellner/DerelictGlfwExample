@@ -1,7 +1,7 @@
 module mfellner.exception;
 
-import std.c.stdio : fputs, fputc, stderr;
-import derelict.opengl3.gl3;
+import core.stdc.stdio : fputs, fputc, stderr;
+import derelict.opengl;
 
 extern(C) nothrow void glfwPrintError(int error, const(char)* description) {
   fputs(description, stderr);

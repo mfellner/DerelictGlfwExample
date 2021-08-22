@@ -5,7 +5,7 @@ import std.stdio;
 import std.range;
 import std.string;
 
-import derelict.opengl3.gl3;
+import derelict.opengl;
 import derelict.glfw3.glfw3;
 
 import mfellner.exception;
@@ -17,13 +17,13 @@ bool animate    = false;
 GLuint vertexLoc, colorLoc;
 GLuint projMatrixLoc, viewMatrixLoc;
 
-GLfloat projMatrix[MATRIX_SIZE];
-GLfloat viewMatrix[MATRIX_SIZE];
+GLfloat[MATRIX_SIZE] projMatrix;
+GLfloat[MATRIX_SIZE] viewMatrix;
 
-GLuint vao[3];
+GLuint[3] vao;
 
 // Data for drawing Axis
-GLfloat verticesAxis[] = [
+GLfloat[] verticesAxis = [
 -20.0,  0.0,  0.0f, 1.0,
  20.0,  0.0,  0.0f, 1.0,
   0.0,-20.0,  0.0f, 1.0,
@@ -31,7 +31,7 @@ GLfloat verticesAxis[] = [
   0.0,  0.0,-20.0f, 1.0,
   0.0,  0.0, 20.0f, 1.0];
 
-GLfloat colorAxis[] = [
+GLfloat[] colorAxis = [
   1.0, 0.0, 0.0, 1.0,
   1.0, 0.0, 0.0, 1.0,
   0.0, 1.0, 0.0, 1.0,
@@ -40,23 +40,23 @@ GLfloat colorAxis[] = [
   0.0, 0.0, 1.0, 1.0];
 
 // Data for triangle 1
-GLfloat vertices1[] = [
+GLfloat[] vertices1 = [
  -3.0, -1.0, -5.0, 1.0,
  -1.0, -1.0, -5.0, 1.0,
  -2.0,  1.0, -5.0, 1.0];
  
-GLfloat colors1[] = [
+GLfloat[] colors1 = [
   0.0, 1.0, 0.0, 1.0,
   1.0, 0.0, 0.0, 1.0,
   0.0, 0.0, 1.0, 1.0];
 
 // Data for triangle 2
-GLfloat vertices2[] = [
+GLfloat[] vertices2 = [
   1.0, -1.0, -5.0, 1.0,
   3.0, -1.0, -5.0, 1.0,
   2.0,  1.0, -5.0, 1.0];
 
-GLfloat colors2[] = [
+GLfloat[] colors2 = [
   0.0, 0.0, 1.0, 1.0,
   0.0, 1.0, 0.0, 1.0,
   1.0, 0.0, 0.0, 1.0];
@@ -135,9 +135,9 @@ void setUniforms() {
 }
 
 void setCamera(GLfloat posX, GLfloat posY, GLfloat posZ, GLfloat lookAtX, GLfloat lookAtY, GLfloat lookAtZ) {
-  GLfloat   dir[VECTOR_SIZE];
-  GLfloat right[VECTOR_SIZE];
-  GLfloat    up[VECTOR_SIZE];
+  GLfloat[VECTOR_SIZE]   dir;
+  GLfloat[VECTOR_SIZE] right;
+  GLfloat[VECTOR_SIZE]    up;
 
   up[0] = 0.0; up[1] = 1.0; up[2] = 0.0;
 
@@ -152,7 +152,7 @@ void setCamera(GLfloat posX, GLfloat posY, GLfloat posZ, GLfloat lookAtX, GLfloa
   crossProduct(right,dir,up);
   normalize(up);
 
-  float aux[MATRIX_SIZE];
+  float[MATRIX_SIZE] aux;
 
   viewMatrix[0]  = right[0];
   viewMatrix[4]  = right[1];
@@ -243,7 +243,7 @@ void main() {
   viewMatrixLoc = glGetUniformLocation(shaderProgram, "viewMatrix");
   glCheckError();
 
-  GLuint vbo[2];
+  GLuint[2] vbo;
   glGenVertexArrays(3, vao.ptr);
   GLint            vSize = 4, cSize = 3;
   GLsizei         stride = 4 * float.sizeof;
@@ -314,7 +314,7 @@ void main() {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     if(animate) {
-      i = frame++ % range.length;
+      i = cast( int ) ( frame++ % range.length );
       k = i == 0 ? k * -1 : k;
       x = (range[i]) / cast(GLfloat)100 * k;
     }
